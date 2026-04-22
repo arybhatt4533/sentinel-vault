@@ -1,52 +1,31 @@
-# 🛡️ Sentinel Vault | Advanced Honeypot Monitoring System
+# 🛡️ Sentinel Vault: Advanced Deception & Threat Intelligence System
+**Developed by: Aryabhatt (Arya Bhatt)** *Cybersecurity Researcher | BCA Developer*
 
 ![System Status](https://img.shields.io/badge/System-ONLINE-00ff00?style=for-the-badge&logo=statuspage)
-![Version](https://img.shields.io/badge/Version-1.0.0--Stable-blue?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
-
-**Sentinel Vault** is a high-interaction Honeypot Dashboard designed to detect, log, and visualize unauthorized access attempts in real-time. Built for the **Hydra-Honey** security suite, it provides a sophisticated interface for security administrators to monitor attack vectors and manage network integrity.
+![UHack 4.0 Merit](https://img.shields.io/badge/Achievement-National_Hackathon_Merit-gold?style=for-the-badge)
 
 ---
 
-## 🚀 Key Features
+## 📖 Detailed Project Overview
+**Sentinel Vault** is not just a dashboard; it is a full-stack **Active Defense** mechanism. While traditional firewalls block traffic, this system uses **Honey-Trap Technology** to lure attackers into a controlled environment. By simulating vulnerable endpoints (like `/.env` or `/admin/config`), we capture high-fidelity threat intelligence without risking real production data.
 
-* **Real-Time Monitoring:** Instant visualization of incoming attack vectors via SQL integration.
-* **Threat Analytics:** Live counters for total threats and banned IP addresses.
-* **Security Layers:** Integrated **Guard** and **Honeypot** middlewares to trap and identify malicious actors.
-* **Data Integrity:** Secure PostgreSQL backend for robust log management.
-* **Cyberpunk UI:** High-contrast, dark-mode dashboard built for maximum readability and "Command Center" feel.
+### Why this project?
+In my research into cybersecurity and ethical hacking, I realized that logging is often boring. **Sentinel Vault** makes security interactive. It provides a real-time "Command Center" view of every malicious handshake attempted on the server.
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Technical Architecture & Schema
 
-| Layer | Technology |
-| :--- | :--- |
-| **Frontend** | React.js, Tailwind CSS, Axios, Lucide Icons |
-| **Backend** | Node.js, Express.js |
-| **Database** | PostgreSQL (pgAdmin) |
-| **Security** | Custom Middleware (Guard & Honey-Trap Logic) |
+### 🗄️ Database Strategy (PostgreSQL)
+The system uses a robust PostgreSQL backend. Based on my **pgAdmin 4** implementation, the core tracking engine runs on this schema:
 
----
-
-## 📸 Dashboard Preview
-
-> **"Establishing Secure Connection..."**
-> The dashboard features a real-time table showing Source IPs, HTTP Methods, and Targeted Vector Paths (like `/.env` or `/admin`).
-
----
-
-## 🏗️ Architecture Flow
-
-1.  **The Trap:** Attacker hits a "Honey-Link" (e.g., `/api/products` or `/.env`).
-2.  **Detection:** `honeypot.js` middleware captures metadata (IP, User-Agent, Payload).
-3.  **Logging:** Backend pushes the attempt into the PostgreSQL `attacks` table.
-4.  **Visualization:** React frontend fetches updates and displays them on the **Sentinel Vault** UI.
-
----
-
-## ⚙️ Installation & Setup
-
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/YOUR_USERNAME/sentinel-vault.git](https://github.com/YOUR_USERNAME/sentinel-vault.git)
+```sql
+CREATE TABLE attacks (
+    id SERIAL PRIMARY KEY,
+    ip_address VARCHAR(50),
+    method VARCHAR(10),
+    path TEXT,
+    user_agent TEXT,
+    payload TEXT,
+    detected_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
