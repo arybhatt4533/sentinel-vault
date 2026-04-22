@@ -1,5 +1,5 @@
 # 🛡️ Sentinel Vault: Advanced Deception & Threat Intelligence System
-**Developed by: Aryabhatt (Arya Bhatt)** *Cybersecurity Researcher | BCA Developer*
+**Developed by: Aryabhatt (Arya Bhatt)** *Developer // open source contributor // BCA student*
 
 ![System Status](https://img.shields.io/badge/System-ONLINE-00ff00?style=for-the-badge&logo=statuspage)
 ![UHack 4.0 Merit](https://img.shields.io/badge/Achievement-National_Hackathon_Merit-gold?style=for-the-badge)
@@ -29,3 +29,35 @@ CREATE TABLE attacks (
     payload TEXT,
     detected_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+🛡️ Security Logic (The Guard & Trap)
+The Guard Middleware: Intercepts every request to check against a dynamically updated banned_ips list.
+
+The Honey-Trap: Specific "dark" routes are set up. Any interaction with these routes is flagged as 100% malicious, as no legitimate user would ever access them.
+
+The Sentinel Bridge: A Node.js API that bridges the gap between the low-level SQL logs and the React high-level visualization.
+
+🚀 Professional Features
+Zero-False Positives: By using deception-based detection, every entry in this dashboard is a verified threat.
+
+Live Threat Streaming: Uses asynchronous polling to update the Sentinel Dashboard without page refreshes.
+
+Payload Analysis: Captures exactly what the attacker was trying to inject (SQLi, XSS, or Path Traversal attempts).
+
+National Hackathon Pedigree: Logic inspired by the award-winning Satellite Threat Detection (STDAMS) project.
+
+💻 Installation for Reviewers
+.Prerequisites
+.Node.js (v18+)
+.PostgreSQL 18
+.Git
+git clone [https://github.com/aryabhatt-dev/sentinel-vault.git](https://github.com/aryabhatt-dev/sentinel-vault.git)
+cd sentinel-vault
+npm install
+Environment Configuration:
+Create a .env in the root with your PostgreSQL credentials:
+DB_PASSWORD=your_secure_password
+Launch the Sentinel:
+# Start the backend guard
+node backend/server.js
+# Start the frontend dashboard
+npm run dev --prefix frontend
